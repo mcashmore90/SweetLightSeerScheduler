@@ -14,7 +14,6 @@
     RadzenScheduler<Appointment> scheduler;
     IList<Appointment> appointments = new List<Appointment>();
 
-
     protected override async Task OnInitializedAsync()
     {
         appointments = await GetSchedule();
@@ -35,7 +34,7 @@
                 Severity = NotificationSeverity.Warning,
                 Summary = "Schedule Unavailable",
                 Detail = "Unable to retrieve schedule. Please check again later.",
-                Style = "position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;",
+                Style = "position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999; width: 500px; font-size: 1.3rem;",
             });
             return result.Data;
         }
@@ -64,7 +63,7 @@
                     Summary = "Reading Request Completed",
                     Detail = "Your request for a reading has been completed. Please watch your email for an upcoming event invitation.",
                     Duration = 5000,
-                    Style = "position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;"
+                    Style = "position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999; width: 500px; font-size: 1.3rem;"
                 });
             }
             else
@@ -73,8 +72,8 @@
                 {
                     Severity = NotificationSeverity.Error,
                     Summary = "Reading Request Incomplete",
-                    Detail = "Unable to request a reading. Please try again later.",
-                    Style = "position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;",
+                    Detail = "Unable to request a reading. Please try again.",
+                    Style = "position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999; width: 500px; font-size: 1.3rem;",
                 });
             }
         }
