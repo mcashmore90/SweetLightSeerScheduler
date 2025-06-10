@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36127.28
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SweetLightSeerScheduler", "SweetLightSeerScheduler\SweetLightSeerScheduler.csproj", "{E23E10C2-D8F2-44B7-ABA1-CBAB565299E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Radzen.Blazor", "Radzen.Blazor\Radzen.Blazor.csproj", "{D2A35284-ED84-512F-031A-7317CF4B01B1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E23E10C2-D8F2-44B7-ABA1-CBAB565299E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E23E10C2-D8F2-44B7-ABA1-CBAB565299E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E23E10C2-D8F2-44B7-ABA1-CBAB565299E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E23E10C2-D8F2-44B7-ABA1-CBAB565299E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2A35284-ED84-512F-031A-7317CF4B01B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2A35284-ED84-512F-031A-7317CF4B01B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2A35284-ED84-512F-031A-7317CF4B01B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2A35284-ED84-512F-031A-7317CF4B01B1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7A7F2730-3365-4462-9BF9-5E2FB030F51E}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,130 @@
+﻿@inject DialogService DialogService
+
+<RadzenTemplateForm TItem="Appointment" Data="@model" Submit=@OnSubmit>
+    <RadzenStack Gap="1rem">
+        <RadzenText class="rz-color-base-100" TextAlign="TextAlign.Center" TextStyle="TextStyle.H4">Schedule Appointment</RadzenText>
+
+        <RadzenText class="rz-color-base-100" TextAlign="TextAlign.Center" TextStyle="TextStyle.Body1">
+            <strong>Date</strong> @model.Start.ToString("dddd, dd MMMM yyyy") at @model.Start.ToString("hh:mm tt")
+        </RadzenText>
+
+        <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center">
+            <RadzenLabel class="rz-color-base-100" Style="width: 11rem;">First Name <span class="rz-color-danger">*</span></RadzenLabel>
+            <RadzenColumn Style="width: 100%">
+                <RadzenTextBox @bind-Value="@model.FirstName" Name="FirstName" Style="width: 100%" />
+                <RadzenRequiredValidator Component="FirstName" Text="First name is required" Style="width:100%" />
+            </RadzenColumn>
+        </RadzenStack>
+
+        <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center">
+            <RadzenLabel class="rz-color-base-100" Text="Last Name" Style="width: 11rem;" />
+            <RadzenTextBox @bind-Value="@model.LastName" Name="Text" Style="width: 100%" />
+        </RadzenStack>
+
+        <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center">
+            <RadzenLabel class="rz-color-base-100" Style="width: 11rem;">Email Address <span class="rz-color-danger">*</span></RadzenLabel>
+            <RadzenColumn Style="width: 100%">
+                <RadzenTextBox @bind-Value="@model.Email" Name="Email" Style="width: 100%" />
+                <RadzenRequiredValidator Component="Email" Text="Email is required" Style="width:100%" />
+                <RadzenEmailValidator Component="Email" Text="Provide a valid email address" Style="width:100%" />
+            </RadzenColumn>
+        </RadzenStack>
+
+        <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center">
+            <RadzenLabel class="rz-color-base-100" Text="Phone Number" Style="width: 11rem;" />
+            <RadzenTextBox @bind-Value="@model.Phone" Name="Phone" Style="width: 100%" />
+        </RadzenStack>
+
+        <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center">
+            <RadzenLabel class="rz-color-base-100" Text="Comment" Style="width: 11rem;" />
+            <RadzenTextArea @bind-Value="@model.Comment" Style="width: 100%" Rows="4" />
+        </RadzenStack>
+
+        <RadzenStack Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.End">
+            <RadzenButton ButtonType="ButtonType.Submit" Text="Schedule" />
+        </RadzenStack>
+    </RadzenStack>
+</RadzenTemplateForm>
+@code {
+    [Parameter]
+    public Appointment Appointment { get; set; }
+
+    Appointment model = new Appointment();
+
+    protected override void OnParametersSet()
+    {
+        model = Appointment;
+    }
+
+    void OnSubmit(Appointment model)
+    {
+        DialogService.Close(model);
+    }
+}
+
+
+
+@* @inject DialogService DialogService
+
+<RadzenTemplateForm TItem="Appointment" Data="@model" Submit=@OnSubmit>
+    <RadzenStack Gap="1rem">
+        <RadzenText TextAlign="TextAlign.Center" TextStyle="TextStyle.H4">Schedule Appointment</RadzenText>
+
+        <RadzenText TextAlign="TextAlign.Center" TextStyle="TextStyle.Body1">
+            <strong>Date</strong> @model.Start.ToString("dddd, dd MMMM yyyy") at @model.Start.ToString("hh:mm tt")
+        </RadzenText>
+
+        <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center">
+            <RadzenLabel Style="width: 8rem;">First Name <span class="required-label">*</span></RadzenLabel>
+            <RadzenColumn Style="width: 100%">
+                <RadzenTextBox @bind-Value="@model.FirstName" Name="FirstName" Style="width: 100%" />
+                <RadzenRequiredValidator Component="FirstName" Text="First name is required" Style="width:100%" />
+            </RadzenColumn>
+        </RadzenStack>
+
+        <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center">
+            <RadzenLabel Text="Last Name" Style="width: 8rem;" />
+            <RadzenTextBox @bind-Value="@model.LastName" Name="Text" Style="width: 100%" />
+        </RadzenStack>
+
+        <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center">
+            <RadzenLabel Style="width: 8rem;">Email Address <span class="required-label">*</span></RadzenLabel>
+            <RadzenColumn Style="width: 100%">
+                <RadzenTextBox @bind-Value="@model.Email" Name="Email" Style="width: 100%" />
+                <RadzenRequiredValidator Component="Email" Text="Email is required" Style="width:100%" />
+                <RadzenEmailValidator Component="Email" Text="Provide a valid email address" Style="width:100%" />
+            </RadzenColumn>
+        </RadzenStack>
+
+        <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center">
+            <RadzenLabel Text="Phone Number" Style="width: 8rem;" />
+            <RadzenTextBox @bind-Value="@model.Phone" Name="Phone" Style="width: 100%" />
+        </RadzenStack>
+
+        <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center">
+            <RadzenLabel Text="Comment" Style="width: 8rem;" />
+            <RadzenTextArea @bind-Value="@model.Comment" Style="width: 100%" Rows="4"/>
+        </RadzenStack>
+
+        <RadzenStack Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.End">
+            <RadzenButton ButtonType="ButtonType.Submit" Text="Save" />
+        </RadzenStack>
+    </RadzenStack>
+</RadzenTemplateForm>
+
+@code {
+    [Parameter]
+    public Appointment Appointment { get; set; }
+
+    Appointment model = new Appointment();
+
+    protected override void OnParametersSet()
+    {
+        model = Appointment;
+    }
+
+    void OnSubmit(Appointment model)
+    {
+        DialogService.Close(model);
+    }
+} *@
