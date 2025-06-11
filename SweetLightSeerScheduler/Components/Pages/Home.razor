@@ -1,4 +1,6 @@
 ﻿@page "/"
+@using SweetLightSeerScheduler.Services
+@inject IGoogleAuthSettings settings
 
 <div class="rz-mx-auto rz-w-100 main-display rz-w-md-75 ">
 
@@ -8,6 +10,8 @@
     <RadzenText TextStyle="TextStyle.DisplayH5" TextAlign="TextAlign.Center">Schedule a reading</RadzenText>
 
     <CalendarScheduler/>
+
+    <RadzenText style="margin-top:1rem;" TextStyle="TextStyle.H4" TextAlign="TextAlign.Center">@settings.ApplicationName "test"<a href="https://www.sweetlightseer.com" target="_blank">Sweet Light Seer</a></RadzenText>
 </div>
 @code {
     

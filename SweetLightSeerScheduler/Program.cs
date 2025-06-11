@@ -47,18 +47,6 @@ namespace SweetLightSeerScheduler
             app.MapRazorComponents<App>()
                 .AddInteractiveServerRenderMode();
 
-            app.MapGet("/debug/env", () =>
-            {
-                var vars = new Dictionary<string, string?>
-    {
-        { "GoogleAuth__PrivateKey", Environment.GetEnvironmentVariable("GoogleAuth__PrivateKey") },
-        { "GoogleAuth__ClientEmail", Environment.GetEnvironmentVariable("GoogleAuth__ClientEmail") },
-        { "ASPNETCORE_ENVIRONMENT", Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") }
-    };
-
-                return Results.Json(vars);
-            });
-
             app.Run();
         }
     }
