@@ -1,4 +1,6 @@
 ﻿
+using Microsoft.Extensions.Diagnostics.HealthChecks;
+
 namespace SweetLightSeerScheduler.Models
 {
     public class Result<T>
@@ -6,7 +8,9 @@ namespace SweetLightSeerScheduler.Models
         public bool IsSuccessful { get; private set; }
         public T Data { get; private set; }
 
-        private Result(bool isSuccessful, T data)
+        public string ErrorMessage { get; private set; }
+
+        private Result(bool isSuccessful, T data, string message)
         {
             IsSuccessful = isSuccessful;
             Data = data;
@@ -14,12 +18,12 @@ namespace SweetLightSeerScheduler.Models
 
         public static Result<T> Success(T data)
         {
-            return new Result<T>(true,data);
+            return new Result<T>(true,data, "");
         }
 
-        public static Result<T> Failure()
+        public static Result<T> Failure(string message)
         {
-            return new Result<T>(false, default(T));
+            return new Result<T>(false, default(T), message);
         }
     }
 }
