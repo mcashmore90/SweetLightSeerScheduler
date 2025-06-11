@@ -14,6 +14,7 @@ namespace SweetLightSeerScheduler.Models
         {
             IsSuccessful = isSuccessful;
             Data = data;
+            ErrorMessage = message;
         }
 
         public static Result<T> Success(T data)
