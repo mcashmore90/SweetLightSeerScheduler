@@ -19,6 +19,15 @@ namespace SweetLightSeerScheduler
             builder.Services.AddRadzenComponents();
             builder.Services.AddScoped<IGoogleCalendarService, GoogleCalendarService>();
 
+            //Configure Environment Variables and ConfigurationAdd commentMore actions
+            builder.Services.AddSingleton<IGoogleAuthSettings>(new GoogleAuthSettings
+            {
+                PrivateKey = Environment.GetEnvironmentVariable("GoogleAuth__PrivateKey") ?? builder.Configuration["GoogleAuth:PrivateKey"],
+                ClientEmail = Environment.GetEnvironmentVariable("GoogleAuth__ClientEmail") ?? builder.Configuration["GoogleAuth:ClientEmail"],
+                ApplicationName = Environment.GetEnvironmentVariable("GoogleAuth__ApplicationName") ?? builder.Configuration["GoogleAuth:ApplicationName"],
+                ReadingId = Environment.GetEnvironmentVariable("GoogleAuth__ReadingId") ?? builder.Configuration["GoogleAuth:ReadingId"],
+                Scope = builder.Configuration.GetSection("GoogleAuth:Scope").Get<string[]>()
+            });
 
             var app = builder.Build();
 
