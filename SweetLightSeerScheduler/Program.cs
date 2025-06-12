@@ -18,6 +18,7 @@ namespace SweetLightSeerScheduler
 
             builder.Services.AddRadzenComponents();
             builder.Services.AddScoped<IGoogleCalendarService, GoogleCalendarService>();
+            builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             //Configure Environment Variables and ConfigurationAdd commentMore actions
             builder.Services.AddSingleton<IGoogleAuthSettings>(new GoogleAuthSettings

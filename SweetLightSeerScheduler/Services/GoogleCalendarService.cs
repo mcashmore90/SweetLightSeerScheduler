@@ -64,7 +64,7 @@ namespace SweetLightSeerScheduler.Services
             }
             catch(Exception e)
             {
-                return Result<List<Appointment>>.Failure(e.Message);
+                return Result<List<Appointment>>.Failure();
             }
 
         }
@@ -98,7 +98,7 @@ namespace SweetLightSeerScheduler.Services
             }
             catch(Exception e)
             {
-                return Result<bool>.Failure(e.Message);
+                return Result<bool>.Failure();
             }
         }
     }

@@ -8,7 +8,7 @@
             @StartDate.ToString("ddd", Scheduler.Culture)
         </div>
     </div>
-    <div @ref=view class="rz-view-content" tabindex="0" @onkeydown="@(args => OnKeyPress(args))" @onkeydown:preventDefault="@preventKeyPress" @onkeydown:stopPropagation
+    <div @ref=view class="rz-view-content" style="height: 100%" tabindex="0" @onkeydown="@(args => OnKeyPress(args))" @onkeydown:preventDefault="@preventKeyPress" @onkeydown:stopPropagation
          @onfocus=@this.AsNonRenderingEventHandler(OnFocus)>
         <Hours Start=@StartTime End=@EndTime TimeFormat=@TimeFormat MinutesPerSlot=@MinutesPerSlot />
         <div class="rz-slots">
