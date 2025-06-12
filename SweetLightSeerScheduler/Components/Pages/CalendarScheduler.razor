@@ -2,27 +2,19 @@
 @inject NotificationService NotificationService
 @inject IGoogleCalendarService service
 @inject DialogService DialogService
-@inject IHttpContextAccessor httpContextAccessor
 
 <RadzenScheduler @ref=@scheduler style="height: 100%" TItem="Appointment" Data=@appointments StartProperty="Start" EndProperty="End"
-                 TextProperty="Summary" SelectedIndex=@calendarIndex AppointmentSelect=@OnAppointmentSelect>
+                 TextProperty="Summary" SelectedIndex="0" AppointmentSelect=@OnAppointmentSelect>
     <RadzenWeekView />
-    <RadzenDayView />
 </RadzenScheduler>
 
 
 @code {
     RadzenScheduler<Appointment> scheduler;
     IList<Appointment> appointments = new List<Appointment>();
-    private int calendarIndex = 0;
 
     protected override async Task OnInitializedAsync()
     {
-        var userAgent = httpContextAccessor?.HttpContext?.Request.Headers["User-Agent"].ToString();
-        if (userAgent != null && (userAgent.Contains("Android") || userAgent.Contains("iPhone")))
-        {
-            calendarIndex = 1;
-        }
         appointments = await GetSchedule();
     }
 
