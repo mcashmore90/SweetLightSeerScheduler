@@ -16,8 +16,6 @@
             </div>
             <div class="notranslate rzi rz-notification-close" @onclick="@Close"></div>
         </div>
-        <RadzenProgressBar ShowValue="false" Visible=@(Message.Duration != null && Message.ShowProgress)
-        Value=@progress Max="@Message.Duration.Value" ProgressBarStyle=@GetProgressBarStyle() />
     </div>
 }
 @code {
@@ -44,28 +42,6 @@
         }
 
         return new Tuple<string, string>("", "");
-    }
-
-    ProgressBarStyle GetProgressBarStyle()
-    {
-        if (Message.Severity == NotificationSeverity.Error)
-        {
-            return ProgressBarStyle.Danger;
-        }
-        else if (Message.Severity == NotificationSeverity.Info)
-        {
-            return ProgressBarStyle.Info;
-        }
-        else if (Message.Severity == NotificationSeverity.Success)
-        {
-            return ProgressBarStyle.Success;
-        }
-        else if (Message.Severity == NotificationSeverity.Warning)
-        {
-            return ProgressBarStyle.Warning;
-        }
-
-        return ProgressBarStyle.Primary;
     }
 
     [Inject] private NotificationService Service { get; set; }
