@@ -50,11 +50,5 @@ namespace Radzen.Blazor
         /// Gets the end date.
         /// </summary>
         DateTime EndDate { get; }
-        /// <summary>
-        /// Handles appointent move event.
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        Task OnAppointmentMove(SchedulerAppointmentMoveEventArgs data);
     }
 }

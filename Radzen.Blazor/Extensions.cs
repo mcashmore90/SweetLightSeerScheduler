@@ -31,15 +31,6 @@ namespace Radzen.Blazor
         }
 
         /// <summary>
-        /// Converts Enum to IEnumerable of Value/Text.
-        /// </summary>
-        public static IEnumerable<object> EnumAsKeyValuePair(Type enumType, Func<string, string> translationFunction = null)
-        {
-            Type underlyingType = Enum.GetUnderlyingType(enumType);
-            return Enum.GetValues(enumType).Cast<Enum>().Distinct().Select(val => new { Value = Convert.ChangeType(val, underlyingType), Text = val.GetDisplayDescription(translationFunction) });
-        }
-
-        /// <summary>
         /// Converts the autocomplete type enum value to the expected
         /// autocomplete attribute value.
         /// </summary>

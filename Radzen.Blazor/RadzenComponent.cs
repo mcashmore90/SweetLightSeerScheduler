@@ -26,21 +26,18 @@ namespace Radzen
 
         /// <summary>
         /// A callback that will be invoked when the user hovers the component. Commonly used to display a tooltip via 
-        /// <see cref="TooltipService.Open(ElementReference, string, TooltipOptions)" />.
         /// </summary>
         [Parameter]
         public EventCallback<ElementReference> MouseEnter { get; set; }
 
         /// <summary>
         /// A callback that will be invoked when the user moves the mouse out of the component. Commonly used to hide a tooltip via 
-        /// <see cref="TooltipService.Close" />.
         /// </summary>
         [Parameter]
         public EventCallback<ElementReference> MouseLeave { get; set; }
 
         /// <summary>
         /// A callback that will be invoked when the user right-clicks the component. Commonly used to display a context menu via 
-        /// <see cref="ContextMenuService.Open(Microsoft.AspNetCore.Components.Web.MouseEventArgs, IEnumerable{ContextMenuItem}, Action{MenuItemEventArgs})" />.
         /// </summary>
         [Parameter]
         public EventCallback<Microsoft.AspNetCore.Components.Web.MouseEventArgs> ContextMenu { get; set; }
