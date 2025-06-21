@@ -1,6 +1,5 @@
 @using Radzen.Blazor
 @using Microsoft.JSInterop
-@inherits DropableViewBase
 @inject IJSRuntime JSRuntime
 
 <div class="rz-view rz-week-view">
@@ -9,7 +8,7 @@
         @for (var day = StartDate; day < EndDate; day = day.AddDays(1))
         {
             var loopDay = day;
-            <div class="rz-slot-header" @onclick=@(args => OnDayClick(@loopDay))>
+            <div class="rz-slot-header">
                 @day.ToString(HeaderFormat, Scheduler.Culture)
             </div>
         }
@@ -23,11 +22,11 @@
                 var start = day.Add(StartTime);
                 var end = day.Add(EndTime);
                 <div class="rz-slots @(day == CurrentDate ? " rz-state-focused" : "")">
-                    <DaySlotEvents MinutesPerSlot=@MinutesPerSlot StartDate=@start EndDate=@end Appointments=@Appointments CurrentDate="@CurrentDate" CurrentAppointment="@currentAppointment" AppointmentDragStart=@OnAppointmentDragStart />
+                    <DaySlotEvents MinutesPerSlot=@MinutesPerSlot StartDate=@start EndDate=@end Appointments=@Appointments CurrentDate="@CurrentDate" CurrentAppointment="@currentAppointment"  />
                     @for (var date = start; date < end; date = date.AddMinutes(MinutesPerSlot))
                     {
                         var slotDate = date;
-                        <div @onclick=@(args => OnSlotClick(slotDate)) ondragover="event.preventDefault();"  @attributes=@Attributes(date)></div>
+                        <div  ondragover="event.preventDefault();"  @attributes=@Attributes(date)></div>
                     }
                 </div>
             }
@@ -80,18 +79,6 @@
         }
 
         return Appointments.Where(item => Scheduler.IsAppointmentInRange(item, start, end)).OrderBy(item => item.Start).ThenByDescending(item => item.End).ToArray();
-    }
-
-    async Task OnSlotClick(DateTime date)
-    {
-        await Scheduler.SelectSlot(date, date.AddMinutes(MinutesPerSlot), AppointmentsInSlot(date, date.AddMinutes(MinutesPerSlot)));
-    }
-
-    async Task OnDayClick(DateTime day)
-    {
-        var dayStart = day.Date.Add(StartTime);
-        var dayEnd = day.Date.Add(EndTime);
-        await Scheduler.SelectDay(day.Date, AppointmentsInSlot(dayStart, dayEnd));
     }
 
     IDictionary<string, object> Attributes(DateTime date)
@@ -158,7 +145,7 @@
         }
         else if (key == "Enter")
         {
-            await OnSlotClick(CurrentDate);
+           
             await view.FocusAsync();
 
             preventKeyPress = true;

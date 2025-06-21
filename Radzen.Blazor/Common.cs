@@ -290,27 +290,6 @@ namespace Radzen
     }
 
     /// <summary>
-    /// </summary>
-    public class SchedulerAppointmentMoveEventArgs
-    {
-        /// <summary>
-        /// Gets or sets the appointment data.
-        /// </summary>
-        public AppointmentData Appointment { get; set; }
-
-        /// <summary>
-        /// Gets or sets the time span which represents the difference between slot start and appointment start.
-        /// </summary>
-        public TimeSpan TimeSpan { get; set; }
-
-        /// <summary>
-        /// Gets or sets the date of the slot where the appointment is moved.
-        /// </summary>
-        public DateTime SlotDate { get; set; }
-    }
-
-
-    /// <summary>
     /// Represents orientation of components that have items.
     /// </summary>
     public enum Orientation
