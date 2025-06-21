@@ -11,7 +11,11 @@ namespace Radzen.Blazor
     /// </summary>
     public interface IScheduler
     {
-
+        /// <summary>
+        /// Gets or sets the appointment move event callback.
+        /// </summary>
+        /// <value>The appointment move event callback.</value>
+        EventCallback<SchedulerAppointmentMoveEventArgs> AppointmentMove { get; set; }
         /// <summary>
         /// Gets the appointments in the specified range.
         /// </summary>
@@ -66,7 +70,25 @@ namespace Radzen.Blazor
         /// <param name="end">The end.</param>
         /// <param name="appointments">The appointments for this range.</param>
         Task<bool> SelectSlot(DateTime start, DateTime end, IEnumerable<AppointmentData> appointments);
-
+        /// <summary>
+        /// Selects the specified month.
+        /// </summary>
+        /// <param name="monthStart">The start of the month.</param>
+        /// <param name="appointments">The appointments for this range.</param>
+        Task SelectMonth(DateTime monthStart, IEnumerable<AppointmentData> appointments);
+        /// <summary>
+        /// Selects the specified day.
+        /// </summary>
+        /// <param name="day">The selected day.</param>
+        /// <param name="appointments">The appointments for this range.</param>
+        Task SelectDay(DateTime day, IEnumerable<AppointmentData> appointments);
+        /// <summary>
+        /// Selects the specified more link.
+        /// </summary>
+        /// <param name="start">The start.</param>
+        /// <param name="end">The end.</param>
+        /// <param name="appointments">The appointments for this range.</param>
+        Task<bool> SelectMore(DateTime start, DateTime end, IEnumerable<AppointmentData> appointments);
         /// <summary>
         /// Gets the appointment HTML attributes.
         /// </summary>
@@ -74,11 +96,44 @@ namespace Radzen.Blazor
         /// <returns>A dictionary containing the HTML attributes for the specified appointment.</returns>
         IDictionary<string, object> GetAppointmentAttributes(AppointmentData item);
         /// <summary>
+        /// Gets the slot HTML attributes.
+        /// </summary>
+        /// <param name="start">The start of the slot.</param>
+        /// <param name="end">The end of the slot.</param>
+        /// <param name="getAppointments">Function to return appointments for this range.</param>
+        /// <returns>A dictionary containing the HTML attributes for the specified slot.</returns>
+        IDictionary<string, object> GetSlotAttributes(DateTime start, DateTime end, Func<IEnumerable<AppointmentData>> getAppointments);
+        /// <summary>
         /// Renders the appointment.
         /// </summary>
         /// <param name="item">The item.</param>
         /// <returns>RenderFragment.</returns>
-        RenderFragment RenderAppointment(AppointmentData item); 
+        RenderFragment RenderAppointment(AppointmentData item);
+
+        /// <summary>
+        /// Notifies the scheduler that the user has moved the mouse over the specified appointment.
+        /// </summary>
+        /// <param name="reference"></param>
+        /// <param name="data"></param>
+        Task MouseEnterAppointment(ElementReference reference, AppointmentData data);
+
+        /// <summary>
+        /// Returns true if the scheduler has a mouse enter appointment listener.
+        /// </summary>
+        bool HasMouseEnterAppointmentDelegate();
+
+        /// <summary>
+        /// Returns true if the scheduler has an AppointmentMove listener.
+        /// </summary>
+        bool HasAppointmentMoveDelegate();
+
+        /// <summary>
+        /// Notifies the scheduler that the user has moved the mouse out of the specified appointment.
+        /// </summary>
+        /// <param name="reference"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        Task MouseLeaveAppointment(ElementReference reference, AppointmentData data);
         /// <summary>
         /// Reloads this instance.
         /// </summary>

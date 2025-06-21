@@ -89,5 +89,15 @@ namespace Radzen.Blazor
         /// </summary>
         /// <value>The end date.</value>
         public abstract DateTime EndDate { get; }
+
+        /// <summary>
+        /// Handles appointent move event.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public async Task OnAppointmentMove(SchedulerAppointmentMoveEventArgs data)
+        {
+            await Scheduler.AppointmentMove.InvokeAsync(data);
+        }
     }
 }
