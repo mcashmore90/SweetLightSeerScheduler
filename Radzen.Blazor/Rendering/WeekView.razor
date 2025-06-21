@@ -9,7 +9,7 @@
         @for (var day = StartDate; day < EndDate; day = day.AddDays(1))
         {
             var loopDay = day;
-        <div class="rz-slot-header" >
+            <div class="rz-slot-header" @onclick=@(args => OnDayClick(@loopDay))>
                 @day.ToString(HeaderFormat, Scheduler.Culture)
             </div>
         }
@@ -23,11 +23,11 @@
                 var start = day.Add(StartTime);
                 var end = day.Add(EndTime);
                 <div class="rz-slots @(day == CurrentDate ? " rz-state-focused" : "")">
-                <DaySlotEvents MinutesPerSlot=@MinutesPerSlot StartDate=@start EndDate=@end Appointments=@Appointments CurrentDate="@CurrentDate" CurrentAppointment="@currentAppointment"/>
+                    <DaySlotEvents MinutesPerSlot=@MinutesPerSlot StartDate=@start EndDate=@end Appointments=@Appointments CurrentDate="@CurrentDate" CurrentAppointment="@currentAppointment" AppointmentDragStart=@OnAppointmentDragStart />
                     @for (var date = start; date < end; date = date.AddMinutes(MinutesPerSlot))
                     {
                         var slotDate = date;
-                    <div @onclick=@(args => OnSlotClick(slotDate)) ondragover="event.preventDefault();" ></div>
+                        <div @onclick=@(args => OnSlotClick(slotDate)) ondragover="event.preventDefault();"  @attributes=@Attributes(date)></div>
                     }
                 </div>
             }
@@ -87,6 +87,12 @@
         await Scheduler.SelectSlot(date, date.AddMinutes(MinutesPerSlot), AppointmentsInSlot(date, date.AddMinutes(MinutesPerSlot)));
     }
 
+    async Task OnDayClick(DateTime day)
+    {
+        var dayStart = day.Date.Add(StartTime);
+        var dayEnd = day.Date.Add(EndTime);
+        await Scheduler.SelectDay(day.Date, AppointmentsInSlot(dayStart, dayEnd));
+    }
 
     IDictionary<string, object> Attributes(DateTime date)
     {
