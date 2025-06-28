@@ -33,7 +33,7 @@ namespace Radzen.Blazor
         /// </summary>
         /// <value>The header text format. Set to <c>ddd</c> by default.</value>
         [Parameter]
-        public string HeaderFormat { get; set; } = "ddd";
+        public string HeaderFormat { get; set; } = "ddd d";
 
         /// <summary>
         /// Gets or sets the start time.

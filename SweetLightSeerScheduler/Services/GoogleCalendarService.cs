@@ -39,6 +39,8 @@ namespace SweetLightSeerScheduler.Services
                 var readingRequest = services.Events.List(_googleAuthSettings.ReadingId);
 
                 readingRequest.TimeMinDateTimeOffset = new DateTimeOffset(DateTime.Now);
+                readingRequest.TimeMaxDateTimeOffset = new DateTimeOffset(DateTime.Now.AddDays(29)); //Four weeks
+                readingRequest.SingleEvents = true;
 
                 var readingAppointments = await readingRequest.ExecuteAsync(CancellationToken.None);
 
